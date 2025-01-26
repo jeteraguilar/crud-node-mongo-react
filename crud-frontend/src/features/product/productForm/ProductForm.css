@@ -1,0 +1,66 @@
+.product-form {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: var(--secondary-color);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  
+}
+
+.form-title {  
+  color: var(--primary-color);
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.form-input,
+.form-textarea {
+  width: 96%;
+  padding: 15px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.form-button {
+  width: 100%;
+  padding: 12px;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.form-button:hover {
+  background-color: var(--accent-color);
+}
+
+.back-button {
+  margin-top: 15px;
+  padding: 12px;
+  background-color: #ccc;
+  color: var(--primary-color);
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+  width: 100%;
+}
+
+.back-button:hover {
+  background-color: #888;
+}
+
+.icon {
+  margin-right: 8px;
+  font-size: 1.2rem;
+}

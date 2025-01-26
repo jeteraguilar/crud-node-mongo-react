@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import ProductList from '../features/product/ProductList';
-import ProductForm from '../features/product/ProductForm';
+import ProductList from '../features/product/productList/ProductList';
+import ProductForm from '../features/product/productForm/ProductForm';
 
 const AppRoutes = () => {
   return (

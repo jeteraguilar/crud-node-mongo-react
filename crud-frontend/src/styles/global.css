@@ -1,10 +1,11 @@
 :root {
-  --primary-color: #4caf50;
-  --secondary-color: #f1f1f1;
+  --primary-color: #007bff;
+  --secondary-color: #f9f9f9;
+  --accent-color: #0056b3;
   --text-color: #333;
-  --font-family: 'Arial, sans-serif';
-  --border-radius: 5px;
+  --border-radius: 8px;
 }
+
 
 body {
   margin: 0;
@@ -12,6 +13,8 @@ body {
   font-family: var(--font-family);
   background-color: var(--secondary-color);
   color: var(--text-color);
+  align-items: flex-start; /* Alinha o conteúdo ao topo */
+  min-height: 100vh;
 }
 
 button {
@@ -26,4 +29,21 @@ button {
   background-color: white;
   border-radius: var(--border-radius);
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.main-container {
+  width: 100%;
+  max-width: 1200px; /* Define uma largura máxima para não ultrapassar o limite */
+  padding: 20px;
+  box-sizing: border-box; /* Garante que o padding não ultrapasse o limite da largura */
+  display: flex;
+  flex-direction: column; /* Alinha os elementos em coluna */
+}
+
+.content {
+  margin-top: 60px; /* Espaço para o header */
+  margin-bottom: 50px; /* Espaço para o footer */
+  padding: 20px;
+  min-height: calc(100vh - 110px); /* Altura total menos header e footer */
+  background-color: #f9f9f9;
 }

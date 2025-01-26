@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { createProduct, updateProduct } from '../../services/productService';
+import { createProduct, updateProduct, getProductById  } from '../../../services/productService';
 import { useNavigate, useParams } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSave, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import './ProductForm.css';
 
 const ProductForm = () => {
@@ -12,16 +14,36 @@ const ProductForm = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    if (id) {
-      // Carregar produto para editar
-      // Aqui você pode fazer uma requisição para pegar o produto existente
-    }
-  }, [id]);
+    const fetchProduct = async () => {
+      if (id) {
+        const product = await getProductById(id);
+        if (product) {
+          setName(product.name);
+          setDescription(product.description);
+          setPrice(
+            product.price.toLocaleString("pt-BR", {
+              style: "currency",
+              currency: "BRL",
+            })
+          );
+          setImage(product.image);
+        } else {
+          navigate('/'); // Caso o produto não seja encontrado, redireciona para a lista
+        }
+      }
+    };
+    fetchProduct();
+  }, [id, navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const product = { name, description, price, image };
+    const product = { 
+      name, 
+      description, 
+      price: parseFloat(price.replace(/[R$.\s]/g, "").replace(",", ".")), 
+      image 
+    };
 
     if (id) {
       // Atualizar produto
@@ -57,10 +79,17 @@ const ProductForm = () => {
         required
       />
       <input
-        type="number"
+        type="text"
         placeholder="Preço"
         value={price}
-        onChange={(e) => setPrice(e.target.value)}
+        onChange={(e) => {
+          const value = e.target.value.replace(/\D/g, ""); // Remove caracteres não numéricos
+          const formattedValue = (value / 100).toLocaleString("pt-BR", {
+            style: "currency",
+            currency: "BRL",
+          });
+          setPrice(formattedValue);
+        }}
         className="form-input"
         required
       />
@@ -72,9 +101,15 @@ const ProductForm = () => {
         className="form-input"
       />
       <div className="form-actions">
-        <button type="submit" className="form-button">Salvar</button>
-        <button type="button" className="back-button" onClick={handleBack}>Voltar</button>
-      </div>
+  <button type="submit" className="form-button">
+    <FontAwesomeIcon icon={faSave} className="icon" />
+    Salvar
+  </button>
+  <button type="button" className="back-button" onClick={handleBack}>
+    <FontAwesomeIcon icon={faArrowLeft} className="icon" />
+    Voltar
+  </button>
+</div>
     </form>
   );
 };
